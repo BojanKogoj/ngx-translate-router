@@ -150,7 +150,8 @@ export abstract class LocalizeParser {
         if (this._languageRoute) {
           this._translateRouteTree(this._languageRoute.children, true);
           // if there is wildcard route
-          if (this._wildcardRoute && this._wildcardRoute.redirectTo) {
+          // Do not try and translate RedirectFunction
+          if (this._wildcardRoute && this._wildcardRoute.redirectTo && typeof this._wildcardRoute.redirectTo !== 'function') {
             this._translateProperty(this._wildcardRoute, 'redirectTo', true);
           }
         } else {
