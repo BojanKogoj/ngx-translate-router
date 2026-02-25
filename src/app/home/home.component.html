@@ -1,10 +1,19 @@
+<h1>HomeComponent</h1>
 <p>
   {{'TITLE' | translate}}
 </p>
 
 <p><a [routerLink]="['/matcher'] | localize">Matcher</a></p>
-<p><a [routerLink]="['/test', 'bob'] | localize">test</a></p>
-<p><a [routerLink]="['/!test', 'bob'] | localize">test2</a></p>
-<p><a [routerLink]="['/bil', 'yoyo'] | localize">test4</a></p>
+<p><a [routerLink]="['/test', 'bob'] | localize">test (['/test', 'bob'] -> /mytest/george)</a></p>
+<p><a [routerLink]="['/!test', 'bob'] | localize">test2 (['/!test', 'bob'] -> /test/george)</a></p>
+<p><a [routerLink]="['/bil', 'yoyo'] | localize">test4 (/bil/yoyo)</a></p>
+<p><a [routerLink]="['/coco'] | localize">Coco</a></p>
+<p><a [routerLink]="['/sarah'] | localize">Sarah</a></p>
+<p><a [routerLink]="['/conditionalRedirectTo'] | localize">conditionalRedirectTo</a></p>
+<p><a [routerLink]="['/!conditionalRedirectTo'] | localize">!conditionalRedirectTo</a></p>
+<p><a [routerLink]="['/toredirect'] | localize">toredirect (to translated /home)</a></p>
 
-<router-outlet (activate)="routerOutletActivation(true)" (deactivate)="routerOutletActivation(false)"></router-outlet>
+<p style="margin-bottom: 4px;">RouterOutlet:</p>
+<div style="border: 1px solid lightgray; padding: 16px">
+  <router-outlet (activate)="routerOutletActivation(true)" (deactivate)="routerOutletActivation(false)"></router-outlet>
+</div>
