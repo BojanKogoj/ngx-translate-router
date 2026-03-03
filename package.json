@@ -9,7 +9,6 @@
     "build:http-loader": "npx ng build --configuration production ngx-translate-router-http-loader",
     "test": "npx ng test",
     "lint": "npx ng lint",
-    "e2e": "npx ng e2e",
     "serve:ssr:ngx-translate-router-demo": "node dist/ngx-translate-router-demo/server/server.mjs"
   },
   "private": true,
@@ -49,7 +48,6 @@
     "karma-jasmine": "~4.0.1",
     "karma-jasmine-html-reporter": "1.7.0",
     "ng-packagr": "21.1.0",
-    "protractor": "~7.0.0",
     "ts-node": "~10.4.0",
     "typescript": "5.9.3"
   }
