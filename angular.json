@@ -18,10 +18,17 @@
               "base": "dist/ngx-translate-router-demo"
             },
             "index": "src/index.html",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": [],
             "sourceMap": true,
             "browser": "src/main.ts",
@@ -84,12 +91,30 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.css"],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "ngx-translate-router-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-translate-router-demo:serve:production"
+            }
           }
         }
       }
@@ -120,6 +145,17 @@
             "tsConfig": "projects/ngx-translate-router/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-translate-router/karma.conf.js"
           }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "ngx-translate-router:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-translate-router:serve:production"
+            }
+          }
         }
       }
     },
@@ -149,6 +185,17 @@
             "tsConfig": "projects/ngx-translate-router-http-loader/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-translate-router-http-loader/karma.conf.js"
           }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "ngx-translate-router-http-loader:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-translate-router-http-loader:serve:production"
+            }
+          }
         }
       }
     },
@@ -176,6 +223,17 @@
             "main": "projects/ngx-translate-router-scully-plugin/src/test.ts",
             "tsConfig": "projects/ngx-translate-router-scully-plugin/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-translate-router-scully-plugin/karma.conf.js"
+          }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "ngx-translate-router-scully-plugin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-translate-router-scully-plugin:serve:production"
+            }
           }
         }
       }
@@ -206,5 +264,11 @@
     "@schematics/angular:resolver": {
       "typeSeparator": "."
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@schematics/angular",
+      "playwright-ng-schematics"
+    ]
   }
 }

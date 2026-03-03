@@ -1,5 +1,14 @@
 import { NgModule, inject } from '@angular/core';
-import { RouterModule, Routes, provideRouter, withDebugTracing } from '@angular/router';
+import {
+  PreloadAllModules,
+  RouterModule,
+  Routes,
+  provideRouter,
+  withComponentInputBinding,
+  withDebugTracing,
+  withDisabledInitialNavigation,
+  withPreloading,
+} from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
@@ -106,9 +115,9 @@ export const routes: Routes = [
     redirectTo: ({ queryParams }) => {
       const localizeRouterService = inject(LocalizeRouterService);
       if (queryParams['redirect']) {
-        return localizeRouterService.translateRoute('/test') as string;
+        return localizeRouterService.translateRoute('/destination/conditionalTranslatedWithRedirect') as string;
       }
-      return localizeRouterService.translateRoute('/home') as string;
+      return localizeRouterService.translateRoute('/destination/conditionalTranslatedWithoutRedirect') as string;
     },
   },
   {
@@ -116,9 +125,9 @@ export const routes: Routes = [
     redirectTo: ({ queryParams }) => {
       const localizeRouterService = inject(LocalizeRouterService);
       if (queryParams['redirect']) {
-        return localizeRouterService.translateRoute('/test') as string;
+        return localizeRouterService.translateRoute('/destination/conditionalNonTranslatedWithRedirect') as string;
       }
-      return localizeRouterService.translateRoute('/home') as string;
+      return localizeRouterService.translateRoute('/destination/conditionalNonTranslatedWithoutRedirect') as string;
     },
   },
   { path: 'toredirect', redirectTo: '/home', data: { skipRouteLocalization: { localizeRedirectTo: true } } },
@@ -129,6 +138,11 @@ export const routes: Routes = [
   },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' },
+  { path: 'destination/:param', component: DestinationComponent },
+  {
+    path: '**',
+    redirectTo: '/404',
+  },
 ];
 
 export function shouldTranslateMap(param: string): string {
@@ -155,6 +169,8 @@ export function shouldTranslateMap(param: string): string {
     provideRouter(
       routes,
       withDebugTracing(),
+      withDisabledInitialNavigation(),
+      withComponentInputBinding(),
       withLocalizeRouter(routes, {
         parser: {
           provide: LocalizeParser,
@@ -163,6 +179,7 @@ export function shouldTranslateMap(param: string): string {
         },
         cacheMechanism: CacheMechanism.Cookie,
         cookieFormat: '{{value}};{{expires:20}};path=/',
+        initialNavigation: true,
       })
     ),
   ],
