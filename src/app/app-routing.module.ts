@@ -96,7 +96,11 @@ export const routes: Routes = [
     component: HomeComponent,
     loadChildren: () => import('./test/test.module').then((mod) => mod.TestModule),
   },
-  { path: 'bil', loadChildren: () => import('./test4/test4.routes').then((mod) => mod.routes) },
+  {
+    path: 'standaloneOriginal',
+    loadChildren: () => import('./standalone-nested/routes').then((mod) => mod.routes),
+    data: { discriminantPathKey: 'standaloneOriginal' },
+  },
   {
     path: 'conditionalRedirectTo',
     redirectTo: ({ queryParams }) => {
