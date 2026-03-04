@@ -37,3 +37,9 @@ test('root redirect', async ({ page }) => {
 
   await expect(page).toHaveURL('/en');
 });
+
+test('redirect with skipRouteLocalization', async ({ page }) => {
+  await page.goto('/toredirect');
+
+  await expect(page).toHaveURL('/en/home');
+});
