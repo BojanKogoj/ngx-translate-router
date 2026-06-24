@@ -5,7 +5,7 @@ test('translated conditional without redirect', async ({ page }) => {
 
   await expect(page).toHaveURL('/en/destination/conditionalTranslatedWithoutRedirect');
 
-  expect(page.getByTestId('param')).toContainText('conditionalTranslatedWithoutRedirect');
+  await expect(page.getByTestId('param')).toContainText('conditionalTranslatedWithoutRedirect');
 });
 
 test('translated conditional with redirect', async ({ page }) => {
@@ -13,7 +13,7 @@ test('translated conditional with redirect', async ({ page }) => {
 
   await expect(page).toHaveURL('/en/destination/conditionalTranslatedWithRedirect');
 
-  expect(page.getByTestId('param')).toContainText('conditionalTranslatedWithRedirect');
+  await expect(page.getByTestId('param')).toContainText('conditionalTranslatedWithRedirect');
 });
 
 test('not translated conditional without redirect', async ({ page }) => {
@@ -21,7 +21,7 @@ test('not translated conditional without redirect', async ({ page }) => {
 
   await expect(page).toHaveURL('/en/destination/conditionalNonTranslatedWithoutRedirect');
 
-  expect(page.getByTestId('param')).toContainText('conditionalNonTranslatedWithoutRedirect');
+  await expect(page.getByTestId('param')).toContainText('conditionalNonTranslatedWithoutRedirect');
 });
 
 test('not translated conditional with redirect', async ({ page }) => {
@@ -29,7 +29,7 @@ test('not translated conditional with redirect', async ({ page }) => {
 
   await expect(page).toHaveURL('/en/destination/conditionalNonTranslatedWithRedirect');
 
-  expect(page.getByTestId('param')).toContainText('conditionalNonTranslatedWithRedirect');
+  await expect(page.getByTestId('param')).toContainText('conditionalNonTranslatedWithRedirect');
 });
 
 test('root redirect', async ({ page }) => {
