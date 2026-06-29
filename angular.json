@@ -64,6 +64,22 @@
               "outputHashing": "none",
               "sourceMap": true,
               "namedChunks": true
+            },
+            "e2e-client": {
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": true,
+              "namedChunks": true,
+              "server": false,
+              "ssr": false,
+              "prerender": false
+            },
+            "e2e-ssr": {
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": true,
+              "namedChunks": true,
+              "prerender": false
             }
           }
         },
@@ -78,6 +94,12 @@
             },
             "production": {
               "buildTarget": "ngx-translate-router-demo:build:production"
+            },
+            "e2e-client": {
+              "buildTarget": "ngx-translate-router-demo:build:e2e-client"
+            },
+            "e2e-ssr": {
+              "buildTarget": "ngx-translate-router-demo:build:e2e-ssr"
             }
           }
         },

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalizeRouterService, LocalizeRouterPipe } from '@gilsdav/ngx-translate-router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [RouterLink, RouterOutlet, LocalizeRouterPipe, TranslateModule],
+  imports: [RouterLink, RouterOutlet, LocalizeRouterPipe, TranslatePipe],
 })
 export class AppComponent implements OnInit {
   constructor(private localize: LocalizeRouterService) {}

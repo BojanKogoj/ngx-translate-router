@@ -14,7 +14,6 @@ import { LocalizeRouterService } from './localize-router.service';
 import { DummyLocalizeParser, LocalizeParser } from './localize-router.parser';
 import { RouterModule, Routes, RouteReuseStrategy, Router, RouterConfigurationFeature } from '@angular/router';
 import { LocalizeRouterPipe } from './localize-router.pipe';
-import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule, Location } from '@angular/common';
 import {
   ALWAYS_SET_PREFIX,
@@ -130,7 +129,7 @@ function createLocalizeRouterProviders(
 }
 
 @NgModule({
-  imports: [CommonModule, RouterModule, TranslateModule, LocalizeRouterPipe],
+  imports: [CommonModule, RouterModule, LocalizeRouterPipe],
   exports: [LocalizeRouterPipe],
 })
 export class LocalizeRouterModule {
