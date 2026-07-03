@@ -34,8 +34,9 @@ export class LocalizedRouter extends Router {
 
     // Overrides default Angular RouterConfigLoader.loadChildren method so we can extend it
     configLoader.loadChildren = (parentInjector: Injector, route: any): Promise<LoadedRouterConfig> => {
-      if (this.childrenLoaders.get(route)) {
-        return this.childrenLoaders.get(route)!;
+      const existingLoader = this.childrenLoaders.get(route);
+      if (existingLoader) {
+        return existingLoader;
       } else if (route._loadedRoutes) {
         return Promise.resolve({
           routes: route._loadedRoutes,
@@ -68,7 +69,11 @@ export class LocalizedRouter extends Router {
     parentInjector: Injector,
     onLoadEndListener?: (r: Route) => void
   ): Promise<LoadedRouterConfig> {
-    const loaded = await wrapIntoPromise(runInInjectionContext(parentInjector, () => route.loadChildren!()));
+    const loadChildren = route.loadChildren;
+    if (!loadChildren) {
+      throw new Error('Route is missing loadChildren');
+    }
+    const loaded = await wrapIntoPromise(runInInjectionContext(parentInjector, () => loadChildren()));
     const t = maybeUnwrapDefaultExport(loaded);
 
     let factoryOrRoutes: NgModuleFactory<any> | Routes;

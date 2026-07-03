@@ -60,8 +60,6 @@ export abstract class LocalizeParser {
    * Initialize language and routes
    */
   protected init(routes: Routes): Promise<any> {
-    let selectedLanguage: string;
-
     // this.initRoutes(routes);
     this.routes = routes;
 
@@ -77,7 +75,7 @@ export abstract class LocalizeParser {
     } else {
       this.defaultLang = this._cachedLang || browserLang || this.locales[0];
     }
-    selectedLanguage = locationLang || this.defaultLang;
+    const selectedLanguage = locationLang || this.defaultLang;
     this.translate.setFallbackLang(this.defaultLang);
 
     let children: Routes = [];
@@ -192,8 +190,8 @@ export abstract class LocalizeParser {
       if (route.children) {
         this._translateRouteTree(route.children);
       }
-      if (route.loadChildren && (<any>route)._loadedRoutes?.length) {
-        this._translateRouteTree((<any>route)._loadedRoutes);
+      if (route.loadChildren && (route as any)._loadedRoutes?.length) {
+        this._translateRouteTree((route as any)._loadedRoutes);
       }
     });
   }
@@ -213,7 +211,7 @@ export abstract class LocalizeParser {
     }
 
     const result = this.translateRoute(routeData.localizeRouter[property]);
-    (<any>route)[property] = prefixLang ? this.addPrefixToUrl(result) : result;
+    (route as any)[property] = prefixLang ? this.addPrefixToUrl(result) : result;
   }
 
   get urlPrefix() {
@@ -264,7 +262,7 @@ export abstract class LocalizeParser {
    * Get language from url
    */
   getLocationLang(url?: string): string {
-    const queryParamSplit = (url || this.location.path()).split(/[\?;]/);
+    const queryParamSplit = (url || this.location.path()).split(/[?;]/);
     let pathSlices: string[] = [];
     if (queryParamSplit.length > 0) {
       pathSlices = queryParamSplit[0].split('/');

@@ -156,9 +156,7 @@ export class LocalizeRouterModule {
 
 export function provideForRootGuard(localizeRouterModule: LocalizeRouterModule): string {
   if (localizeRouterModule) {
-    throw new Error(
-      `LocalizeRouterModule.forRoot() called twice. Lazy loaded modules should use LocalizeRouterModule.forChild() instead.`
-    );
+    throw new Error('LocalizeRouterModule.forRoot() called twice. Lazy loaded modules should use LocalizeRouterModule.forChild() instead.');
   }
   return 'guarded';
 }
